@@ -53,7 +53,7 @@ export type WordTree =
     children: WordTree[];
 }
 
-export const treeToSentence:((tree : WordTree , acc : string) => string) = (tree : WordTree , acc : string) => (tree.children.length == 0) ? acc+" "+tree.root : acc+" "+tree.root+" "+tree.children.reduce((accu, curr) => accu + treeToSentence(curr,accu)," ")
+export const treeToSentence:((tree : WordTree) => string) = (tree : WordTree) => (tree.children.length == 0) ? tree.root : tree.root+" "+tree.children.reduce((acc, curr) => acc + treeToSentence(curr)+" ","")
 const t1: WordTree = 
 {
   root: "Hello",
@@ -78,6 +78,6 @@ const t1: WordTree =
     },
   ]
 }
-console.log(treeToSentence(t1,""))
+console.log(treeToSentence(t1))
   
   
