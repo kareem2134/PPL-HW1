@@ -2,15 +2,22 @@
 
 (define last-item
     (lambda (lst)
-    @todo
-))
+    (if (equal? (cdr lst) '() )  
+    (car lst) 
+    (last-item(cdr lst))
+)))
 
 (define remove-last-item
     (lambda (lst)
-    @todo
+        (if (equal? (cdr lst) '())
+        '()
+        (cons (car lst) (remove-last-item(cdr lst))))
 ))
 
 (define rotate-nth
     (lambda (lst n)
-    @todo
-))
+    (if (equal? lst '()) 
+      '() 
+      (if (= n 0) lst (rotate-nth (cons (last-item lst) (remove-last-item lst))(- n 1))
+    )
+)))
