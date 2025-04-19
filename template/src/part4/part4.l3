@@ -1,5 +1,12 @@
 #lang racket/base
 
+ ; Signature: last-item(lst)
+ ; Type: [List(T)]->T
+ ; Purpose: to find the last element in a list
+ ; Pre-conditions: (null? lst)-> #f :the List is not empty
+ ; Tests: (last-item '(1 2 3))->3
+;         (last-item '(71 22 5))->5  
+
 (define last-item
     (lambda (lst)
     (if (equal? (cdr lst) '() )  
@@ -7,12 +14,26 @@
     (last-item(cdr lst))
 )))
 
+ ; Signature:  remove-last-item(lst)
+ ; Type: [List(T)]->List(T)
+ ; Purpose: to remove the last element in a list
+ ; Pre-conditions: (null? lst)-> #f :the List is not empty
+ ; Tests: (remove-last-item '(1 2 3))->'(1 2)
+ ;        (remove-last-item '(7 8 1))->'(7 8)  
+
 (define remove-last-item
     (lambda (lst)
         (if (equal? (cdr lst) '())
         '()
         (cons (car lst) (remove-last-item(cdr lst))))
 ))
+
+ ; Signature: rotate-nth(lst , n)
+ ; Type:[List(T) * number]->List(T)
+ ; Purpose: to rotate the list n times to the right
+ ; Pre-conditions: (>= n 0)-> #t : n is not negative number
+ ; Tests: (rotate-nth '(1 2 3) 2)->'(2 3 1) 
+ ;        (rotate-nth '(5 8 1 0) 1)->'(0 5 8 1)     
 
 (define rotate-nth
     (lambda (lst n)
